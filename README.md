@@ -5,4 +5,4 @@ This is a homework assignment project for Fintech solutions studies 2024
 ## Technology stack
 
 - Java
-- Android studio 2024 Hedgehog 2023
+- Android studio Hedgehog 2023
