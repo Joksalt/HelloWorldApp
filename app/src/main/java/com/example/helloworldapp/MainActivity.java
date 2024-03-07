@@ -26,4 +26,12 @@ public class MainActivity extends AppCompatActivity {
     public void btnChangeColor(View view) {
         this.tvText.setTextColor(Color.RED);
     }
+
+    public void btnCrashOnclikc(View view) {
+        try {
+            throw new Exception("App just crashed...");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
