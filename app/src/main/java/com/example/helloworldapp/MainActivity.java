@@ -8,7 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    private Random random;
 
     private TextView tvText;
     private Button btnChangeText;
@@ -18,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        random = new Random();
 
         this.tvText = findViewById(R.id.tvText);
 
@@ -34,7 +41,14 @@ public class MainActivity extends AppCompatActivity {
         btnChangeTextColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvText.setTextColor(Color.RED);
+                int randomColor = Color.argb(255,
+                        random.nextInt(256),
+                        random.nextInt(256),
+                        random.nextInt(256));
+
+                tvText.setTextColor(randomColor);
+
+                random.nextInt();
             }
         });
     }
