@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvText;
+    private Button btnChangeText;
+    private Button btnChangeTextColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +20,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.tvText = findViewById(R.id.tvText);
-    }
 
-    public void btnChangeTextClick(View view) {
-        this.tvText.setText("Hello and welcome!");
-    }
+        this.btnChangeText = findViewById(R.id.btnChangeText);
+        this.btnChangeTextColor = findViewById(R.id.btnChangeTextColor);
 
-    public void btnChangeColor(View view) {
-        this.tvText.setTextColor(Color.RED);
+        btnChangeText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvText.setText("Hello and welcome!");
+            }
+        });
+
+        btnChangeTextColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvText.setTextColor(Color.RED);
+            }
+        });
     }
 }
