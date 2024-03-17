@@ -1,68 +1,69 @@
 package com.example.helloworldapp;
 
+import static com.example.helloworldapp.Utils.StringExtensions.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Random;
-
 public class MainActivity extends AppCompatActivity {
-    private Random random;
-
-    private TextView tvText;
+    private TextView tvResult;
     private EditText etUserInput;
-    private Button btnChangeText;
-    private Button btnChangeTextColor;
+    private Button btnCalculate;
+    private Spinner spnCalculationTypeSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        random = new Random();
+        InitViews();
 
-        this.tvText = findViewById(R.id.tvText);
+        btnCalculate.setOnClickListener(v -> btnClickCalculate());
+    }
+
+    private void InitViews(){
+        this.tvResult = findViewById(R.id.tvOutput);
         this.etUserInput = findViewById(R.id.etUserInput);
 
-        this.btnChangeText = findViewById(R.id.btnChangeText);
-        this.btnChangeTextColor = findViewById(R.id.btnChangeTextColor);
+        this.btnCalculate = findViewById(R.id.btnCalculate);
 
-        btnChangeText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        this.spnCalculationTypeSelection = findViewById(R.id.spnCalculationType);
 
-                String userInputText =  etUserInput.getText().toString();
-                Log.i("information", String.format("This is what getText() gets: %s", userInputText));
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.calculation_types,
+                android.R.layout.simple_spinner_item
+        );
 
-                if(userInputText.isEmpty()){
-                    Toast.makeText(MainActivity.this,"Please enter Your name!", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    tvText.setText(String.format("Hello, %s!", userInputText));
-                    etUserInput.setText("");
-                }
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spnCalculationTypeSelection.setAdapter(adapter);
+    }
+
+    private void btnClickCalculate(){
+        String userInputText =  etUserInput.getText().toString();
+
+        if(userInputText.isEmpty()){
+            Toast.makeText(MainActivity.this,"Input must not be empty!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            String calculationType = spnCalculationTypeSelection.getSelectedItem().toString();
+
+            switch (calculationType){
+                case "Words":
+                    tvResult.setText(String.format("Word count: %d", CalculateWordCount(userInputText)));
+                    break;
+                case "Characters":
+                    tvResult.setText(String.format("Character count: %d", CalculateCharCount(userInputText)));
+                    break;
             }
-        });
-
-        btnChangeTextColor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int randomColor = Color.argb(255,
-                        random.nextInt(256),
-                        random.nextInt(256),
-                        random.nextInt(256));
-
-                tvText.setTextColor(randomColor);
-
-                random.nextInt();
-            }
-        });
+        }
     }
 }
