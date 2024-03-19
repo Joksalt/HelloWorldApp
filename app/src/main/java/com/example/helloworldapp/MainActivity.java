@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void btnClickCalculate(){
-        String userInputText =  etUserInput.getText().toString();
+        String userInputText = etUserInput.getText().toString().trim();
 
         if(userInputText.isEmpty()){
             Toast.makeText(MainActivity.this,"Input must not be empty!", Toast.LENGTH_SHORT).show();
