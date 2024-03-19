@@ -49,6 +49,16 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
+    public void CalculateWordCount_WhenInputStringContainsSpecialDuplicateWhitespaceSeparators_ReturnsTwo(){
+        final String inputString = "Hello  world";
+        final int expectedOutput = 2;
+
+        final int actualOutput = StringExtensions.CalculateWordCount(inputString);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
     public void CalculateCharCount_WhenInputStringIsEmpty_ReturnsZero(){
         final String inputString = "";
         final int expectedOutput = 0;
@@ -82,6 +92,16 @@ public class StringExtensionsUnitTest {
     public void CalculateCharCount_WhenInputStringContainsSpecialSymbols_ReturnsCharCount(){
         final String inputString = "!@#$%^&*()_+[]{}";
         final int expectedOutput = 16;
+
+        final int actualOutput = StringExtensions.CalculateCharCount(inputString);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void CalculateCharCount_WhenInputStringContainsMultipleWhiteSpaceSeparators_ReturnsCharCount(){
+        final String inputString = "Hello  world";
+        final int expectedOutput = 10;
 
         final int actualOutput = StringExtensions.CalculateCharCount(inputString);
 

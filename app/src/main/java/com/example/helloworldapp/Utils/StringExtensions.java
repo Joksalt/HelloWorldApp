@@ -6,7 +6,7 @@ public class StringExtensions {
             return 0;
         }
 
-        String[] words = input.split(" ");
+        String[] words = input.split("\\s+");
 
         return words.length;
     }
@@ -14,7 +14,7 @@ public class StringExtensions {
     public static int CalculateCharCount(String input){
         int result = 0;
 
-        String[] words = input.trim().split(" ");
+        String[] words = input.split("\\s+");
 
         for (int i = 0; i < words.length; i++) {
             result += words[i].length();
