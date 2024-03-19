@@ -2,6 +2,9 @@ package com.example.helloworldapp.Utils;
 
 public class StringExtensions {
     public static int CalculateWordCount(String input){
+
+        input = input.trim();
+
         if (input.isEmpty()){
             return 0;
         }
@@ -14,7 +17,7 @@ public class StringExtensions {
     public static int CalculateCharCount(String input){
         int result = 0;
 
-        String[] words = input.split("\\s+");
+        String[] words = input.trim().split("\\s+");
 
         for (int i = 0; i < words.length; i++) {
             result += words[i].length();

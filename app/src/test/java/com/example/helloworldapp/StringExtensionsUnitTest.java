@@ -9,7 +9,7 @@ import com.example.helloworldapp.Utils.StringExtensions;
 public class StringExtensionsUnitTest {
 
     @Test
-    public void CalculateWordCount_WhenInputStringIsEmpty_ReturnsZero(){
+    public void CalculateWordCount_WhenInputStringIsEmpty_ReturnsCorrectWordCount(){
         final String inputString = "";
         final int expectedOutput = 0;
 
@@ -19,7 +19,7 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
-    public void CalculateWordCount_WhenInputStringValid_ReturnsWordCount(){
+    public void CalculateWordCount_WhenInputStringValid_ReturnsCorrectWordCount(){
         final String inputString = "Hello world!";
         final int expectedOutput = 2;
 
@@ -29,7 +29,7 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
-    public void CalculateWordCount_WhenInputStringContainsOnlySpaces_ReturnsZero(){
+    public void CalculateWordCount_WhenInputStringContainsOnlySpaces_ReturnsCorrectWordCount(){
         final String inputString = "     ";
         final int expectedOutput = 0;
 
@@ -39,7 +39,7 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
-    public void CalculateWordCount_WhenInputStringContainsSpecialSymbols_ReturnsOne(){
+    public void CalculateWordCount_WhenInputStringContainsSpecialSymbols_ReturnsCorrectWordCount(){
         final String inputString = "!@#$%^&*()_+[]{}";
         final int expectedOutput = 1;
 
@@ -49,7 +49,7 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
-    public void CalculateWordCount_WhenInputStringContainsSpecialDuplicateWhitespaceSeparators_ReturnsTwo(){
+    public void CalculateWordCount_WhenInputStringContainsSpecialDuplicateWhitespaceSeparators_ReturnsCorrectWordCount(){
         final String inputString = "Hello  world";
         final int expectedOutput = 2;
 
@@ -59,7 +59,17 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
-    public void CalculateCharCount_WhenInputStringIsEmpty_ReturnsZero(){
+    public void CalculateWordCount_WhenInputStringContainsWhiteSpaceInFrontOfTheString_ReturnsCorrectWordCount(){
+        final String inputString = "   Hello World!";
+        final int expectedOutput = 2;
+
+        final int actualOutput = StringExtensions.CalculateWordCount(inputString);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void CalculateCharCount_WhenInputStringIsEmpty_ReturnsCorrectCharCount(){
         final String inputString = "";
         final int expectedOutput = 0;
 
@@ -69,7 +79,7 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
-    public void CalculateCharCount_WhenInputStringValid_ReturnsCharCount(){
+    public void CalculateCharCount_WhenInputStringValid_ReturnsCorrectCharCount(){
         final String inputString = "Hello world!";
         final int expectedOutput = 11;
 
@@ -79,7 +89,7 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
-    public void CalculateCharCount_WhenInputStringContainsOnlySpaces_ReturnsZero(){
+    public void CalculateCharCount_WhenInputStringContainsOnlySpaces_ReturnsCorrectCharCount(){
         final String inputString = "     ";
         final int expectedOutput = 0;
 
@@ -89,7 +99,7 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
-    public void CalculateCharCount_WhenInputStringContainsSpecialSymbols_ReturnsCharCount(){
+    public void CalculateCharCount_WhenInputStringContainsSpecialSymbols_ReturnsCorrectCharCount(){
         final String inputString = "!@#$%^&*()_+[]{}";
         final int expectedOutput = 16;
 
@@ -99,8 +109,28 @@ public class StringExtensionsUnitTest {
     }
 
     @Test
-    public void CalculateCharCount_WhenInputStringContainsMultipleWhiteSpaceSeparators_ReturnsCharCount(){
+    public void CalculateCharCount_WhenInputStringContainsMultipleWhiteSpaceSeparators_ReturnsCorrectCharCount(){
         final String inputString = "Hello  world";
+        final int expectedOutput = 10;
+
+        final int actualOutput = StringExtensions.CalculateCharCount(inputString);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void CalculateCharCount_WhenInputStringContainsSpecialDuplicateWhitespaceSeparators_ReturnsCorrectCharCount(){
+        final String inputString = "Hello  world";
+        final int expectedOutput = 10;
+
+        final int actualOutput = StringExtensions.CalculateCharCount(inputString);
+
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void CalculateCharCount_WhenInputStringContainsWhiteSpaceInFrontOfTheString_ReturnsCorrectCharCount(){
+        final String inputString = "   Hello World";
         final int expectedOutput = 10;
 
         final int actualOutput = StringExtensions.CalculateCharCount(inputString);
